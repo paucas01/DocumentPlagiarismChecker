@@ -92,11 +92,11 @@ namespace DocumentPlagiarismChecker
         }               
 
         /// <summary>
-        /// Writes the gioven scores to the configured outputs.
+        /// Escribe las puntuaciones de gioven en las salidas configuradas.
         /// </summary>
         /// <param name="results">A set of file matching scores</param>
         public void WriteOutput(){
-            //TODO: must be selected by settings
+            //TODO: debe ser seleccionado por la configuración
             TerminalOutput t = new TerminalOutput(this.Settings);
             t.Write(this.MatchingResults);
         }
