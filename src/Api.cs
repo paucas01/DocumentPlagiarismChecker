@@ -15,7 +15,7 @@ using DocumentPlagiarismChecker.Outputs;
 namespace DocumentPlagiarismChecker
 {
     /// <summary>
-    /// This object provides access to the functionalities for the Document Plagiarism Checker library. 
+    /// Este objeto proporciona acceso a las funcionalidades de la biblioteca Document Plagiarism Checker.. 
     /// </summary>
     public class Api: IDisposable{
         private long _total;
@@ -41,14 +41,14 @@ namespace DocumentPlagiarismChecker
         }
 
         /// <summary>
-        /// Uses the settings values for comparing a set of files between each other. 
+        /// Utiliza los valores de configuración para comparar un conjunto de archivos entre sí.. 
         /// </summary>
         public void CompareFiles(){
             //Initial Checks
             if(!Directory.Exists(this.Settings.Folder)) 
                 throw new Exceptions.FolderNotFoundException();
 
-            //Initial vars. including the set of files.            
+            //Vars iniciales. incluido el conjunto de archivos..            
             Dictionary<string, ComparatorMatchingScore> results = new Dictionary<string, ComparatorMatchingScore>();
             List<string> files = Directory.GetFiles(this.Settings.Folder, string.Format("*.{0}", this.Settings.Extension), (this.Settings.Recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Where(x => !x.Equals(this.Settings.Sample)).ToList();
             List<Type> comparatorTypes = GetComparatorTypes().ToList();
@@ -56,21 +56,21 @@ namespace DocumentPlagiarismChecker
             _total = files.Count() * files.Count() * comparatorTypes.Count;
             _computed = 0;
 
-            //Loops over each pair of files (the files must be compared between each other in a relation "1 to many").
+            //Se repite cada par de archivos (los archivos deben compararse entre sí en una relación "1 a muchos").
             for(int i = 0; i < files.Count(); i++){                                
                 string leftFilePath = files.ElementAt(i);
                             
                 for(int j = 0; j < files.Count(); j++){                                
                     string rightFilePath = files.ElementAt(j);                                        
                                                                 
-                    //Instantiate and run every Comparator avoiding already computed ones and comparing a file with itself            
+                    //Cree una instancia y ejecute cada comparador evitando los ya calculados y comparando un archivo consigo mismo          
                     if(rightFilePath != leftFilePath){
                         foreach(Type t in comparatorTypes){                                                        
                             ComparatorMatchingScore cms = null;
                             string key = GetComparatorKey(rightFilePath, leftFilePath, t);
 
                             if(results.ContainsKey(key)){                            
-                                //The existing results will be copied swapping the left and right files and reusing the already computed data.
+                                //Los resultados existentes se copiarán intercambiando los archivos izquierdo y derecho y reutilizando los datos ya calculados.
                                 ComparatorMatchingScore old = results[key];                        
                                 cms = old.Copy(old.RightFileName, old.LeftFileName);                            }
                             else{

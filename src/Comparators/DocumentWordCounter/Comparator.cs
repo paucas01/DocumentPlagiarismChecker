@@ -35,7 +35,11 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
         /// </summary>
         /// <returns>The matching's results.</returns>
         public override ComparatorMatchingScore Run(){
+<<<<<<< HEAD
+            //Contando las apariciones de palabras para cada documento (izquierda y derecha).
+=======
             //Contando la aparición de palabras por cada documento(izquierda y derecha).
+>>>>>>> a60b9b3d44d0f4337d7ea69f12c1e31b4aa2d9b9
             Dictionary<string, int[]> counter = new Dictionary<string, int[]>();
             foreach(string word in this.Left.WordAppearances.Select(x => x.Key)){
                 if(!counter.ContainsKey(word)) counter.Add(word, new int[]{0, 0});
@@ -47,7 +51,11 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
                 counter[word][1] += Right.WordAppearances[word];
             }
 
+<<<<<<< HEAD
+            //Contar las apariciones de las palabras del archivo de muestra, para ignorar las de los archivos anteriores.
+=======
             //Contando apariciones de palabras de fichero de muestra, para ignorar las de ficheros anteriores.
+>>>>>>> a60b9b3d44d0f4337d7ea69f12c1e31b4aa2d9b9
             if(this.Sample != null){
                  foreach(string word in this.Sample.WordAppearances.Select(x => x.Key)){
                     if(counter.ContainsKey(word)){
@@ -60,12 +68,20 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
                 }
             }
 
+<<<<<<< HEAD
+            //Definición de los encabezados de resultados.
+=======
             //Definiendo los encabezados de los resultados
+>>>>>>> a60b9b3d44d0f4337d7ea69f12c1e31b4aa2d9b9
             ComparatorMatchingScore cr = new ComparatorMatchingScore(this.Left.Name, this.Right.Name, "Document Word Counter", DisplayLevel.FULL);            
             cr.DetailsCaption = new string[] { "Word", "Left count", "Right count", "Match" };
             cr.DetailsFormat = new string[]{"{0}", "{0}", "{0}", "{0:P2}"};
 
+<<<<<<< HEAD
+            //Calcule la coincidencia de cada palabra individual.            
+=======
             //Calcular el matching para cada palabra individual.            
+>>>>>>> a60b9b3d44d0f4337d7ea69f12c1e31b4aa2d9b9
             foreach(string word in counter.Select(x => x.Key)){                
                 int left = counter[word][0];
                 int right = counter[word][1];                
