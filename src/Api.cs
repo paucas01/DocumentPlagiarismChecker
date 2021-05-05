@@ -56,21 +56,21 @@ namespace DocumentPlagiarismChecker
             _total = files.Count() * files.Count() * comparatorTypes.Count;
             _computed = 0;
 
-            //Loops over each pair of files (the files must be compared between each other in a relation "1 to many").
+            //Se repite cada par de archivos (los archivos deben compararse entre sí en una relación "1 a muchos").
             for(int i = 0; i < files.Count(); i++){                                
                 string leftFilePath = files.ElementAt(i);
                             
                 for(int j = 0; j < files.Count(); j++){                                
                     string rightFilePath = files.ElementAt(j);                                        
                                                                 
-                    //Instantiate and run every Comparator avoiding already computed ones and comparing a file with itself            
+                    //Cree una instancia y ejecute cada comparador evitando los ya calculados y comparando un archivo consigo mismo          
                     if(rightFilePath != leftFilePath){
                         foreach(Type t in comparatorTypes){                                                        
                             ComparatorMatchingScore cms = null;
                             string key = GetComparatorKey(rightFilePath, leftFilePath, t);
 
                             if(results.ContainsKey(key)){                            
-                                //The existing results will be copied swapping the left and right files and reusing the already computed data.
+                                //Los resultados existentes se copiarán intercambiando los archivos izquierdo y derecho y reutilizando los datos ya calculados.
                                 ComparatorMatchingScore old = results[key];                        
                                 cms = old.Copy(old.RightFileName, old.LeftFileName);                            }
                             else{
