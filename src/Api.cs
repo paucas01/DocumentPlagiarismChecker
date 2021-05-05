@@ -96,8 +96,8 @@ namespace DocumentPlagiarismChecker
         /// </summary>
         /// <param name="results">A set of file matching scores</param>
         public void WriteOutput(){
-            //TODdsffsdsdfsdfsdf
-            TerminalOutput t = new TerminalOutput(this.Settings);//dsfdfssdf
+            //TODsdfsdfa<ZZZ
+            TerminalOutput t = new TerminalOutput(this.Settings);//dsfKEEE
             t.Write(this.MatchingResults);//dfngidbfgubdfjhbdfghjbdfhjgb
         }
 
