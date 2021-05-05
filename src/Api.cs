@@ -96,7 +96,11 @@ namespace DocumentPlagiarismChecker
         /// </summary>
         /// <param name="results">A set of file matching scores</param>
         public void WriteOutput(){
+<<<<<<< HEAD
             //TODO: debe ser seleccionado por la configuración
+=======
+            //TODO: must be selected by settingssssssss
+>>>>>>> a114c5461174e9e3d49c1f026a90529750587173
             TerminalOutput t = new TerminalOutput(this.Settings);
             t.Write(this.MatchingResults);
         }
